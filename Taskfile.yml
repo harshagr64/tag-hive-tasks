@@ -1,0 +1,31 @@
+---
+
+version: '3'
+
+output: prefixed
+
+tasks:
+  run-app:
+    cmds:
+      - task: build-task
+      - task: scan-images
+      - task: push-images
+      - task: deploy-task
+  build-task:
+    cmds:
+      - docker build -t harshagr63/app_a:latest ./apps/app_a
+      - docker build -t harshagr63/app_b:latest ./apps/app_b
+  scan-images:
+    # deps: [build-task]
+    cmds:
+      - docker scan --file ./apps/app_a/Dockerfile --exclude-base python:3.10.6-slim-bullseye
+      - docker scan --file ./apps/app_a/Dockerfile --exclude-base python:3.10.6-slim-bullseye
+  push-images:
+    # deps: [scan-images]
+    cmds:
+      - docker push harshagr63/app_a:latest
+      - docker push harshagr63/app_b:latest
+  deploy-task:
+    # deps: [push-images]
+    cmds:
+      - kubectl apply -f ./k8s-deployment

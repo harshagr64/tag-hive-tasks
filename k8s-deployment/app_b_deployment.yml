@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-b-deployment
+  labels:
+    app: app-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     app: app-b-container
+  template:
+    metadata:
+      labels:
+        app: app-b-container
+    spec:
+      containers:
+        - name: app-b
+          image: harshagr63/app_b:latest
+          ports:
+            - containerPort: 5001
+          securityContext:
+            allowPrivilegeEscalation: false
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-b-service
+spec:
+  selector:
+    app: app-b-container
+  ports:
+    - protocol: TCP
+      port: 80 #pod port
+      targetPort: 5001 #container port
