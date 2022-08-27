@@ -80,3 +80,8 @@ Simulating a lot of requests
 ```bash
 ab -m POST -H "Authorization: mytoken" -n 500 -c 4 http://<minikube_ip>:32000/jobs
 ```
+
+Deleting the deployments:
+```bash
+kubectl delete -f ./k8s-deployment
+```
