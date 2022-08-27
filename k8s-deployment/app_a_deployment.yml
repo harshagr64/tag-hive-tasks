@@ -17,10 +17,9 @@ spec:
       containers:
         - name: app-a
           image: harshagr63/app_a:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 5000
-          securityContext:
-            allowPrivilegeEscalation: false
           resources:
             requests:
               memory: "64Mi"
@@ -28,6 +27,8 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
+          securityContext:
+            allowPrivilegeEscalation: false
 
 ---
 

@@ -9,6 +9,7 @@ RUN pip3 install --upgrade pip && \
     pip3 install -r requirements.txt --no-cache-dir
 
 COPY . .
+# creating a non-root user
 RUN groupadd -g 999 python && \
     useradd -r -u 999 -g python python && \
     chown -R python:python /app/
