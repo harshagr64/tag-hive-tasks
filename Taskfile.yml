@@ -12,9 +12,7 @@ tasks:
       - task: deploy-task
   build-task:
     cmds:
-      - eval $(minikube docker-env)
-      - docker build -t harshagr63/app_a:latest ./apps/app_a
-      - docker build -t harshagr63/app_b:latest ./apps/app_b
+      - eval $(minikube docker-env) && docker build -t harshagr63/app_a:latest ./apps/app_a && docker build -t harshagr63/app_b:latest ./apps/app_b
   scan-images:
     # deps: [build-task]
     cmds:

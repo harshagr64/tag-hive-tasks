@@ -67,7 +67,7 @@ Running the apps locally:
 task run-app
 ```
 
-Making a request
+Making a request:
 
 ```bash
 curl http://<minikube_ip>:32000/hello
