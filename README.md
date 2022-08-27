@@ -57,14 +57,12 @@ I will be scanning the image using Dockerfile first, because after applying "eva
 - Minikube installed & running on system
 - task installed on system
 
-
-Running the apps locally:
-
 To get minikube node ip
 ```bash
 minikube ip
 ```
 
+Running the apps locally:
 ```bash
 task run-app
 ```
